@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Noto_Sans, Spline_Sans } from "next/font/google"; // Corrected font import
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
-// Using Noto Sans for body and Spline Sans for display as per placeholder preference
-const notoSans = Noto_Sans({
+const spaceGrotesk = Space_Grotesk({
     subsets: ["latin"],
-    variable: "--font-noto-sans",
-});
-
-const splineSans = Spline_Sans({
-    subsets: ["latin"],
-    variable: "--font-spline-sans",
+    variable: "--font-space-grotesk",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +24,7 @@ export default function RootLayout({
                 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
             </head>
             <body
-                className={`${notoSans.variable} ${splineSans.variable} font-body bg-background text-foreground antialiased`}
+                className={`${spaceGrotesk.variable} font-sans bg-background text-foreground antialiased`}
             >
                 <Providers>
                     <div className="relative flex flex-col min-h-screen">

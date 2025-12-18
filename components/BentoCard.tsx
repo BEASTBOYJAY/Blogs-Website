@@ -24,7 +24,7 @@ interface BentoCardProps {
 }
 
 const DEFAULT_PARTICLE_COUNT = 12;
-const DEFAULT_GLOW_COLOR = '137, 150, 78'; // Olive as per request default
+const DEFAULT_GLOW_COLOR = '207, 210, 214'; // Silver to match theme
 
 const createParticleElement = (x: number, y: number, color: string = DEFAULT_GLOW_COLOR) => {
     const el = document.createElement('div');
@@ -51,10 +51,10 @@ export const BentoCard = ({
     style,
     particleCount = DEFAULT_PARTICLE_COUNT,
     glowColor = DEFAULT_GLOW_COLOR,
-    enableTilt = true,
+    enableTilt = false,
     clickEffect = true,
     enableMagnetism = true,
-    disableAnimations = false,
+    disableAnimations = true,
     img,
     title,
     description,

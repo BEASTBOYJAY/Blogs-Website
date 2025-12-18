@@ -3,12 +3,10 @@
 import { useState } from "react"
 import { SearchBar } from "@/components/SearchBar"
 
-import { AboutMeLink } from "@/components/AboutMeLink"
+import { HeadlineSection } from "@/components/HeadlineSection"
 import { blogPosts, BlogPost } from "@/lib/blogData"
 import { BentoGrid } from "@/components/BentoGrid"
 import { BentoCard } from "@/components/BentoCard"
-import VantaBackground from "@/components/VantaBackground" // Import Vanta
-import { useRouter } from "next/navigation"
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("")
@@ -20,62 +18,53 @@ export default function Home() {
 
     const getGridStyle = (size: BlogPost['size']) => {
         const style: React.CSSProperties = {};
-        if (size === 'large') {
-            style.gridColumn = 'span 2';
-            style.gridRow = 'span 2';
-        } else if (size === 'wide' || size === 'medium') {
+        if (size === 'wide') {
             style.gridColumn = 'span 2';
         } else if (size === 'tall') {
+            style.gridRow = 'span 2';
+        } else if (size === 'large') {
+            style.gridColumn = 'span 2';
             style.gridRow = 'span 2';
         }
         return style;
     };
 
     return (
-        <div className="min-h-screen py-8 px-4 md:px-8 max-w-[1400px] mx-auto flex flex-col gap-8 text-foreground transition-colors duration-300 relative z-10">
-            <VantaBackground />
-            {/* Header Area */}
-            <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 flex items-center justify-center text-primary rounded-full bg-primary/10">
-                        <span className="material-symbols-outlined text-2xl">grid_view</span>
+        <div className="min-h-screen flex flex-col text-foreground transition-colors duration-300 bg-background">
+            <HeadlineSection />
+
+            <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-12 flex flex-col gap-8 relative z-10">
+                {/* Header Area - Functional Nav */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 flex items-center justify-center text-primary rounded-full bg-primary/10">
+                            <span className="material-symbols-outlined text-2xl">grid_view</span>
+                        </div>
+                        <h2 className="text-xl font-bold tracking-tight">Latest Posts</h2>
                     </div>
-                    <h1 className="text-xl font-bold tracking-tight">BentoBlog</h1>
+
+                    <div className="flex-1 w-full md:max-w-xl mx-auto z-10">
+                        <SearchBar value={searchQuery} onChange={setSearchQuery} />
+                    </div>
                 </div>
 
-                <div className="flex-1 w-full md:max-w-xl mx-auto md:absolute md:left-1/2 md:-translate-x-1/2 z-10">
-                    <SearchBar value={searchQuery} onChange={setSearchQuery} />
+                {/* Magic Bento Grid */}
+                <div className="w-full">
+                    <BentoGrid glowColor="207, 210, 214">
+                        {filteredPosts.map((post) => (
+                            <BentoCard
+                                key={post.slug}
+                                slug={post.slug}
+                                title={post.title}
+                                description={post.excerpt}
+                                label={post.tags[0]}
+                                img={post.author.avatar}
+                                style={getGridStyle(post.size)}
+                                glowColor="207, 210, 214"
+                            />
+                        ))}
+                    </BentoGrid>
                 </div>
-
-                <div className="flex items-center gap-4 justify-end">
-                    <AboutMeLink />
-
-                </div>
-            </header>
-
-            {/* Hero */}
-            <div className="flex flex-col items-start gap-2 pt-8 pb-4">
-                <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight tracking-tight">
-                    Discover New <span className="text-[#89964e] underline decoration-4 underline-offset-4">Perspectives</span>
-                </h2>
-            </div>
-
-            {/* Magic Bento Grid */}
-            <div className="w-full">
-                <BentoGrid glowColor="137, 150, 78">
-                    {filteredPosts.map((post) => (
-                        <BentoCard
-                            key={post.slug}
-                            slug={post.slug}
-                            title={post.title}
-                            description={post.excerpt}
-                            label={post.tags[0]}
-                            img={post.author.avatar}
-                            style={getGridStyle(post.size)}
-                            glowColor="137, 150, 78"
-                        />
-                    ))}
-                </BentoGrid>
             </div>
         </div>
     )

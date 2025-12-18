@@ -4,43 +4,45 @@
 
 @layer base {
   :root {
-    /* Base HSL values for Dark Mode (Default) */
-    --background: 180 71% 7%;
-    /* Deep Teal #051d1d */
-    --foreground: 0 0% 98%;
-    /* Whiteish */
+    /* Black & Silver Theme */
+    --background: 0 0% 0%;
+    /* #000000 */
+    --foreground: 216 6% 82%;
+    /* #cfd2d6 Silver Primary */
 
-    --card: 180 60% 4%;
-    /* Slightly darker/richer than bg */
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 6%;
+    /* #0f0f0f */
+    --card-foreground: 216 6% 82%;
 
-    --popover: 180 71% 7%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 216 6% 82%;
 
-    --primary: 71 32% 45%;
-    /* Olive - pops against teal */
-    --primary-foreground: 0 0% 98%;
+    --primary: 216 6% 82%;
+    /* Silver */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 180 50% 15%;
-    /* Lighter Teal accent */
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 16.5%;
+    /* #2a2a2a Border Accent */
+    --secondary-foreground: 216 6% 82%;
 
-    --muted: 180 50% 15%;
-    --muted-foreground: 180 20% 70%;
+    --muted: 0 0% 6%;
+    --muted-foreground: 215 5% 65%;
+    /* #9fa4aa Silver Secondary */
 
-    --accent: 71 32% 45%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 216 6% 82%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 180 50% 15%;
-    --input: 180 50% 15%;
-    --ring: 71 32% 45%;
-
-    --bento-glow: 71 32% 45%;
+    --border: 0 0% 16.5%;
+    /* #2a2a2a */
+    --input: 0 0% 16.5%;
+    --ring: 216 6% 82%;
 
     --radius: 0.5rem;
+
+    font-family: var(--font-space-grotesk), sans-serif;
   }
 }
 

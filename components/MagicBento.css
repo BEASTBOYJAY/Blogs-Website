@@ -1,15 +1,16 @@
 :root {
-  --hue: 77;
-  --sat: 30%;
-  --white: hsl(0, 0%, 100%);
-  --olive-primary: #89964e;
-  --olive-glow: rgba(137, 150, 78, 0.4);
-  --olive-border: rgba(137, 150, 78, 0.5);
-  --border-color: #1a2f2f;
-  --background-dark: #051d1d;
+  --hue: 216;
+  --sat: 6%;
+  --white: hsl(216, 6%, 82%);
+  --olive-primary: #cfd2d6;
+  /* Silver */
+  --olive-glow: rgba(207, 210, 214, 0.4);
+  --olive-border: rgba(207, 210, 214, 0.5);
+  --border-color: #2a2a2a;
+  --background-dark: #000000;
   --card-bg-light: #ffffff;
-  --card-bg-dark: #051d1d;
-  color-scheme: light dark;
+  --card-bg-dark: #0f0f0f;
+  color-scheme: dark;
 }
 
 .card-grid {
@@ -126,22 +127,7 @@
 
 @media (min-width: 1024px) {
   .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .magic-bento-card:nth-child(3) {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-
-  .magic-bento-card:nth-child(4) {
-    grid-column: 1 / span 2;
-    grid-row: 2 / span 2;
-  }
-
-  .magic-bento-card:nth-child(6) {
-    grid-column: 4;
-    grid-row: 3;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

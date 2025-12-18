@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, ReactNode } from 'react';
-import './PixelCard.css';
 
 interface PixelCardProps {
     variant?: 'default' | 'blue' | 'yellow' | 'pink' | string;

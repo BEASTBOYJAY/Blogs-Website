@@ -4,30 +4,13 @@ import { useState } from "react"
 import { SearchBar } from "@/components/SearchBar"
 
 import { HeadlineSection } from "@/components/HeadlineSection"
-import { blogPosts, BlogPost } from "@/lib/blogData"
-import { BentoGrid } from "@/components/BentoGrid"
-import { BentoCard } from "@/components/BentoCard"
+
+import DynamicBlogGrid from "@/components/DynamicBlogGrid"
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("")
 
-    const filteredPosts = blogPosts.filter(post =>
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-    )
 
-    const getGridStyle = (size: BlogPost['size']) => {
-        const style: React.CSSProperties = {};
-        if (size === 'wide') {
-            style.gridColumn = 'span 2';
-        } else if (size === 'tall') {
-            style.gridRow = 'span 2';
-        } else if (size === 'large') {
-            style.gridColumn = 'span 2';
-            style.gridRow = 'span 2';
-        }
-        return style;
-    };
 
     return (
         <div className="min-h-screen flex flex-col text-foreground transition-colors duration-300 bg-background">
@@ -48,23 +31,8 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Magic Bento Grid */}
-                <div className="w-full">
-                    <BentoGrid glowColor="207, 210, 214">
-                        {filteredPosts.map((post) => (
-                            <BentoCard
-                                key={post.slug}
-                                slug={post.slug}
-                                title={post.title}
-                                description={post.excerpt}
-                                label={post.tags[0]}
-                                img={post.author.avatar}
-                                style={getGridStyle(post.size)}
-                                glowColor="207, 210, 214"
-                            />
-                        ))}
-                    </BentoGrid>
-                </div>
+                {/* Dynamic Blog Grid */}
+                <DynamicBlogGrid maxPosts={5} searchQuery={searchQuery} />
             </div>
         </div>
     )

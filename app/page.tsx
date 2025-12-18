@@ -7,6 +7,7 @@ import { AboutMeLink } from "@/components/AboutMeLink"
 import { blogPosts, BlogPost } from "@/lib/blogData"
 import { BentoGrid } from "@/components/BentoGrid"
 import { BentoCard } from "@/components/BentoCard"
+import VantaBackground from "@/components/VantaBackground" // Import Vanta
 import { useRouter } from "next/navigation"
 
 export default function Home() {
@@ -31,7 +32,8 @@ export default function Home() {
     };
 
     return (
-        <div className="min-h-screen py-8 px-4 md:px-8 max-w-[1400px] mx-auto flex flex-col gap-8 bg-background text-foreground transition-colors duration-300">
+        <div className="min-h-screen py-8 px-4 md:px-8 max-w-[1400px] mx-auto flex flex-col gap-8 text-foreground transition-colors duration-300 relative z-10">
+            <VantaBackground />
             {/* Header Area */}
             <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex items-center gap-2">

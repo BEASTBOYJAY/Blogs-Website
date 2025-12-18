@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base HSL values for Light Mode */
+    --background: 0 0% 100%;
+    /* White */
+    --foreground: 180 71% 7%;
+    /* Deep Teal #051d1d */
+
+    --card: 0 0% 100%;
+    --card-foreground: 180 71% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 180 71% 7%;
+
+    --primary: 180 71% 7%;
+    /* Deep Teal */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 71 32% 45%;
+    /* Olive #89964e */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 180 20% 96%;
+    --muted-foreground: 180 10% 40%;
+
+    --accent: 71 32% 45%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 180 20% 92%;
+    --input: 180 20% 92%;
+    --ring: 180 71% 7%;
+
+    --radius: 0.5rem;
+
+    /* Magic Bento Variables mapped to theme */
+    --bento-glow: 71 32% 45%;
+    /* Olive glow */
+  }
+
+  .dark {
+    /* Base HSL values for Dark Mode */
+    --background: 180 71% 7%;
+    /* Deep Teal #051d1d */
+    --foreground: 0 0% 98%;
+    /* Whiteish */
+
+    --card: 180 60% 4%;
+    /* Slightly darker/richer than bg */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 180 71% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 71 32% 45%;
+    /* Olive - pops against teal */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 180 50% 15%;
+    /* Lighter Teal accent */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 180 50% 15%;
+    --muted-foreground: 180 20% 70%;
+
+    --accent: 71 32% 45%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 180 50% 15%;
+    --input: 180 50% 15%;
+    --ring: 71 32% 45%;
+
+    --bento-glow: 71 32% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+}

@@ -11,31 +11,35 @@ declare global {
 
 export default function VantaBackground() {
     const vantaRef = useRef<HTMLDivElement>(null);
-    const [vantaEffect, setVantaEffect] = useState<any>(null);
+    const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
     useEffect(() => {
-        return () => {
-            if (vantaEffect) vantaEffect.destroy();
-        };
-    }, [vantaEffect]);
+        if (!isScriptLoaded) return;
 
-    const initVanta = () => {
-        if (!vantaEffect && window.VANTA && vantaRef.current) {
+        // Access VANTA safely
+        if (!window.VANTA) return;
+
+        try {
             const effect = window.VANTA.TOPOLOGY({
                 el: vantaRef.current,
                 mouseControls: true,
                 touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
+                gyroControls: true,
+                minHeight: 1000.00,
+                minWidth: 1000.00,
                 scale: 1.00,
                 scaleMobile: 1.00,
-                color: 0x89964e,
-                backgroundColor: 0x051d1d
+                color: 0x89964e, // Olive
+                backgroundColor: 0x051d1d // Deep Teal
             });
-            setVantaEffect(effect);
+
+            return () => {
+                if (effect) effect.destroy();
+            };
+        } catch (error) {
+            console.error("Failed to initialize Vanta:", error);
         }
-    };
+    }, [isScriptLoaded]);
 
     return (
         <>
@@ -46,19 +50,28 @@ export default function VantaBackground() {
             <Script
                 src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"
                 strategy="afterInteractive"
-                onLoad={initVanta}
+                onLoad={() => setIsScriptLoaded(true)}
             />
             <div
                 ref={vantaRef}
                 className="fixed inset-0 -z-10 w-full h-full pointer-events-none"
                 style={{
                     position: "fixed",
-                    zIndex: -1,
+                    zIndex: -10, // Vanta at the very back
                     top: 0,
                     left: 0,
                     width: "100%",
                     height: "100%",
                     pointerEvents: "none"
+                }}
+            />
+            {/* Haze Overlay */}
+            <div
+                className="fixed inset-0 pointer-events-none z-[-5]"
+                style={{
+                    backgroundColor: 'rgba(5, 29, 29, 0.4)', // Slightly transparent Deep Teal
+                    backdropFilter: 'blur(1px)',
+                    WebkitBackdropFilter: 'blur(1px)', // Safari support
                 }}
             />
         </>

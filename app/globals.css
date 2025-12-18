@@ -4,48 +4,7 @@
 
 @layer base {
   :root {
-    /* Base HSL values for Light Mode */
-    --background: 0 0% 100%;
-    /* White */
-    --foreground: 180 71% 7%;
-    /* Deep Teal #051d1d */
-
-    --card: 0 0% 100%;
-    --card-foreground: 180 71% 7%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 180 71% 7%;
-
-    --primary: 180 71% 7%;
-    /* Deep Teal */
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 71 32% 45%;
-    /* Olive #89964e */
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 180 20% 96%;
-    --muted-foreground: 180 10% 40%;
-
-    --accent: 71 32% 45%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 180 20% 92%;
-    --input: 180 20% 92%;
-    --ring: 180 71% 7%;
-
-    --radius: 0.5rem;
-
-    /* Magic Bento Variables mapped to theme */
-    --bento-glow: 71 32% 45%;
-    /* Olive glow */
-  }
-
-  .dark {
-    /* Base HSL values for Dark Mode */
+    /* Base HSL values for Dark Mode (Default) */
     --background: 180 71% 7%;
     /* Deep Teal #051d1d */
     --foreground: 0 0% 98%;
@@ -80,6 +39,8 @@
     --ring: 71 32% 45%;
 
     --bento-glow: 71 32% 45%;
+
+    --radius: 0.5rem;
   }
 }
 

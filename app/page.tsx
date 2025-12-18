@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { SearchBar } from "@/components/SearchBar"
-import { ThemeToggle } from "@/components/ThemeToggle"
+
 import { AboutMeLink } from "@/components/AboutMeLink"
 import { blogPosts, BlogPost } from "@/lib/blogData"
 import { BentoGrid } from "@/components/BentoGrid"
@@ -49,7 +49,7 @@ export default function Home() {
 
                 <div className="flex items-center gap-4 justify-end">
                     <AboutMeLink />
-                    <ThemeToggle />
+
                 </div>
             </header>
 

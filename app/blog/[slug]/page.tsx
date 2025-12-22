@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import parse, { DOMNode, domToReact, Element } from "html-react-parser"; // Import parser and types
+import CodeBlock from "@/components/CodeBlock"; // Import CodeBlock component
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
     const post = await getBlogPostBySlug(params.slug);
@@ -23,6 +25,10 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
             <article className="prose prose-lg dark:prose-invert max-w-none">
                 <header className="flex flex-col gap-6 mb-12">
+
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+                        {post.title}
+                    </h1>
                     <div className="flex flex-wrap gap-2">
                         {post.tags.map((tag) => (
                             <span
@@ -33,10 +39,6 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                             </span>
                         ))}
                     </div>
-
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-                        {post.title}
-                    </h1>
 
                     <div className="flex items-center gap-4 text-muted-foreground">
                         <div className="flex items-center gap-2">
@@ -55,26 +57,26 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                         <span>{post.readTime} read</span>
                     </div>
 
-                    {post.imageUrl && (
-                        <div className="mt-6 border border-border shadow-2xl rounded-[2rem] overflow-hidden">
-                            <Image
-                                src={post.imageUrl}
-                                alt={post.title}
-                                width={1200}
-                                height={630}
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
-                                className="w-full h-auto"
-                                priority
-                            />
-                        </div>
-                    )}
                 </header>
 
-                <div className="leading-relaxed text-lg text-muted-foreground">
-                    <p className="mb-6 font-medium text-foreground text-xl border-l-4 border-primary pl-6 italic">
-                        {post.excerpt}
-                    </p>
-                    <p>{post.content}</p>
+                <div className="leading-relaxed text-lg text-muted-foreground parse-content">
+                    {parse(post.content, {
+                        replace: (domNode) => {
+                            if (domNode instanceof Element && domNode.name === 'pre') {
+                                // The parser gives us the <pre> element. 
+                                // We check if it has a child <code>, or just take children.
+                                // domNode.children is an array of nodes.
+                                // We want to render our CodeBlock with the inner content.
+                                // However, keeping hydration simple:
+                                // We can just return the CodeBlock with domToReact(domNode.children)
+                                return (
+                                    <CodeBlock>
+                                        {domToReact(domNode.children as DOMNode[])}
+                                    </CodeBlock>
+                                );
+                            }
+                        }
+                    })}
                 </div>
             </article>
         </div>

@@ -56,12 +56,14 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                     </div>
 
                     {post.imageUrl && (
-                        <div className="relative w-full aspect-video rounded-[2rem] overflow-hidden mt-6 border border-border shadow-2xl">
+                        <div className="mt-6 border border-border shadow-2xl rounded-[2rem] overflow-hidden">
                             <Image
                                 src={post.imageUrl}
                                 alt={post.title}
-                                fill
-                                className="object-cover"
+                                width={1200}
+                                height={630}
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
+                                className="w-full h-auto"
                                 priority
                             />
                         </div>
@@ -72,15 +74,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                     <p className="mb-6 font-medium text-foreground text-xl border-l-4 border-primary pl-6 italic">
                         {post.excerpt}
                     </p>
-                    {/* Render actual content here. For now we use the dummy 'content' field */}
                     <p>{post.content}</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <h2>The Magic of Bento</h2>
-                    <p>
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
                 </div>
             </article>
         </div>

@@ -25,8 +25,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Dynamic Blog Grid */}
-                <DynamicBlogGrid maxPosts={5} searchQuery={searchQuery} />
+                <DynamicBlogGrid searchQuery={searchQuery} />
             </div>
         </div>
     )

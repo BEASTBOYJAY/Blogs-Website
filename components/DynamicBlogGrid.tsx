@@ -11,7 +11,7 @@ interface DynamicBlogGridProps {
     searchQuery?: string;
 }
 
-export default function DynamicBlogGrid({ maxPosts = 7, searchQuery = "" }: DynamicBlogGridProps) {
+export default function DynamicBlogGrid({ maxPosts, searchQuery = "" }: DynamicBlogGridProps) {
     const [posts, setPosts] = React.useState<BlogPost[]>([]);
     const [loading, setLoading] = React.useState(true);
 

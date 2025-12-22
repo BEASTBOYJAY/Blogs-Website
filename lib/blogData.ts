@@ -13,7 +13,7 @@ export interface BlogPost {
     readTime: string;
     imageUrl: string;
     featured?: boolean;
-    size?: 'small' | 'medium' | 'large' | 'tall' | 'wide'; // Helper for bento layout
+
 }
 
 export const blogPosts: BlogPost[] = [
@@ -31,7 +31,7 @@ export const blogPosts: BlogPost[] = [
         readTime: "5 min",
         imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuDh2_qMjRptRUdsThpVBfg68jPGIL-pnK5XUCYqv0Gvu1HpOBYprxsqNMzc0a8LOlG4PN9kqhZ-Tlp0whSTWIJPdoWN0o1RUxOiU1K-o0JtzwOjuZa8kPaygi9DI3H5iz0r1XP4bQT8Ab788TSBQte7DcFGXVi8umMqZ_S1sftBonkOuYrPWjw2b08r9LciM3LoMxVGwDBzH0y24p58Z--VEZK1qMWPhoFwJpkuyGZPUnSUGOuz8_vl5QojYSPmz9XzUuxkwKYbcZA",
         featured: true,
-        size: 'wide'
+
     },
     {
         slug: "handshake-deal",
@@ -46,7 +46,7 @@ export const blogPosts: BlogPost[] = [
         },
         readTime: "3 min",
         imageUrl: "",
-        size: 'small'
+
     },
     {
         slug: "team-adaptation",
@@ -61,7 +61,7 @@ export const blogPosts: BlogPost[] = [
         },
         readTime: "3 min",
         imageUrl: "",
-        size: 'small'
+
     },
     {
         slug: "sync-app",
@@ -76,7 +76,7 @@ export const blogPosts: BlogPost[] = [
         },
         readTime: "4 min",
         imageUrl: "",
-        size: 'small'
+
     },
     {
         slug: "bring-people-together",
@@ -91,7 +91,7 @@ export const blogPosts: BlogPost[] = [
         },
         readTime: "6 min",
         imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCCyXAdH3L2N82IqvxdTLJAHcWlP8F53WDXXIpFWXKkGMI6zifuzK3oEj1xnxQUciBf0sW5RRAx8JLm-3zBdnOWWxMmu8yl5aquF0mT61kDtr_MBD0i9TZf1A59l1qZ9RzwCgKtPzahVsUPCEDwtGKtYFkF3J70b5xLECJ1s-CD6uepe1zmS2YSO9Yq-fcpi9dTXyAAOeCs-7UiVzglt8wEL4TTF2TnPL0n73OwcuDeGyoK2eOsGQlYm-oeoYhQU__cxJzKHVtEEuU",
-        size: 'tall'
+
     },
     {
         slug: "chat-updates",
@@ -106,7 +106,7 @@ export const blogPosts: BlogPost[] = [
         },
         readTime: "2 min",
         imageUrl: "",
-        size: 'small'
+
     },
     {
         slug: "stay-in-touch",
@@ -121,6 +121,6 @@ export const blogPosts: BlogPost[] = [
         },
         readTime: "3 min",
         imageUrl: "",
-        size: 'small'
+
     }
 ];

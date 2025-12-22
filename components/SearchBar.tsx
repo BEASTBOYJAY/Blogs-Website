@@ -18,7 +18,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 placeholder="Search topics, tags, or articles..."
-                className="w-full h-14 pl-12 pr-6 rounded-full bg-white dark:bg-surface-dark border-2 border-transparent focus:border-primary ring-0 shadow-sm focus:shadow-lg transition-all text-slate-900 dark:text-white placeholder-slate-400 outline-none text-lg"
+                className="w-full h-14 pl-12 pr-6 rounded-full bg-black border-2 border-[#C0C0C0] focus:border-[#C0C0C0] ring-0 shadow-sm focus:shadow-lg transition-all text-white placeholder-slate-400 outline-none text-lg"
             />
         </div>
     )

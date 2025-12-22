@@ -9,7 +9,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-    title: "BentoBlog",
+    title: "BeastBlog",
     description: "Curated insights on design, technology, and modern living.",
 };
 

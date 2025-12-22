@@ -1,13 +1,11 @@
-"use client";
-
-import { blogPosts } from "@/lib/blogData";
+import { getBlogPostBySlug } from "@/lib/blogService";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-    const post = blogPosts.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+    const post = await getBlogPostBySlug(params.slug);
 
     if (!post) {
         notFound();

@@ -16,9 +16,8 @@ export default function PixelBlogCard({ post, className }: PixelBlogCardProps) {
         <div className={cn("relative group h-full w-full min-h-[250px]", className)}>
             <Link href={`/blog/${post.slug}`} className="block h-full w-full">
                 <PixelCard
-                    className="h-full w-full border border-white/10 bg-black/50 overflow-hidden relative"
+                    className="h-full w-full border border-white/10 group-hover:border-zinc-300 group-hover:shadow-[0_0_30px_-5px_rgba(212,212,216,0.6)] transition-all duration-300 bg-black/50 overflow-hidden relative"
                     variant="default"
-                    // Use the existing Zinc/Silver palette from the previous file or a default
                     colors="#27272a,#52525b,#a1a1aa"
                 >
                     <div className="absolute inset-0 p-6 flex flex-col justify-between z-10 pointer-events-none">

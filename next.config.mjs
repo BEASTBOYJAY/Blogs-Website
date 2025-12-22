@@ -10,6 +10,10 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "reactbits.dev",
             },
+            {
+                protocol: "https",
+                hostname: "cdn-images-1.medium.com",
+            },
         ],
     },
 };

@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import parse, { DOMNode, domToReact, Element } from "html-react-parser"; // Import parser and types
-import CodeBlock from "@/components/CodeBlock"; // Import CodeBlock component
+import parse, { DOMNode, domToReact, Element } from "html-react-parser";
+import CodeBlock from "@/components/CodeBlock";
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
     const post = await getBlogPostBySlug(params.slug);

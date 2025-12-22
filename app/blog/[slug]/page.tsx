@@ -41,21 +41,6 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                     </div>
 
                     <div className="flex items-center gap-4 text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                            {post.author.avatar && (
-                                <div className="relative w-10 h-10 rounded-full overflow-hidden border border-border">
-                                    <Image
-                                        src={post.author.avatar}
-                                        alt={post.author.name}
-                                        fill
-                                        className="object-cover"
-                                        sizes="40px"
-                                    />
-                                </div>
-                            )}
-                            <span className="font-medium text-foreground">{post.author.name}</span>
-                        </div>
-                        <span>•</span>
                         <time>{post.date}</time>
                         <span>•</span>
                         <span>{post.readTime} read</span>

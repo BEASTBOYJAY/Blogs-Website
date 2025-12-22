@@ -63,12 +63,6 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                     {parse(post.content, {
                         replace: (domNode) => {
                             if (domNode instanceof Element && domNode.name === 'pre') {
-                                // The parser gives us the <pre> element. 
-                                // We check if it has a child <code>, or just take children.
-                                // domNode.children is an array of nodes.
-                                // We want to render our CodeBlock with the inner content.
-                                // However, keeping hydration simple:
-                                // We can just return the CodeBlock with domToReact(domNode.children)
                                 return (
                                     <CodeBlock>
                                         {domToReact(domNode.children as DOMNode[])}

@@ -6,11 +6,13 @@ import Image from "next/image";
 import PixelCard from "./PixelCard";
 import { BlogPost } from "@/lib/blogData";
 import { cn } from "@/lib/utils";
+import parse, { Element } from "html-react-parser";
 
 interface PixelBlogCardProps {
     post: BlogPost;
     className?: string; // For grid positioning classes
 }
+
 
 const PixelBlogCard = memo(function PixelBlogCard({ post, className }: PixelBlogCardProps) {
     return (
@@ -43,9 +45,15 @@ const PixelBlogCard = memo(function PixelBlogCard({ post, className }: PixelBlog
                             <h2 className="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
                                 {post.title}
                             </h2>
-                            <p className="text-sm text-gray-300 line-clamp-2">
-                                {post.excerpt}
-                            </p>
+                            <div className="text-sm text-gray-300 line-clamp-2">
+                                {parse(post.excerpt, {
+                                    replace: (domNode) => {
+                                        if (domNode instanceof Element && (domNode.name === 'img' || domNode.name === 'figure')) {
+                                            return <></>;
+                                        }
+                                    }
+                                })}
+                            </div>
                             <div className="flex items-center gap-4 mt-4 text-xs text-gray-400 font-mono uppercase tracking-wider">
                                 <span>{post.date}</span>
                                 <span>•</span>

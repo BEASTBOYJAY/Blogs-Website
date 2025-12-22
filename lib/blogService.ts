@@ -2,7 +2,18 @@
 import { supabase } from './supabaseClient';
 import { BlogPost } from './blogData';
 
-const mapDbPostToBlogPost = (post: any): BlogPost => {
+// Define the shape of the database response
+interface DatabasePost {
+    guid: string;
+    title: string;
+    description?: string;
+    content?: string;
+    categories?: string[];
+    pub_date?: string;
+    thumbnail_url?: string;
+}
+
+const mapDbPostToBlogPost = (post: DatabasePost): BlogPost => {
     const slug = post.guid.split('/').pop() || post.guid;
 
     return {
@@ -25,7 +36,7 @@ const mapDbPostToBlogPost = (post: any): BlogPost => {
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
     const { data, error } = await supabase
         .from('blog_posts')
-        .select('*')
+        .select('guid, title, description, content, categories, pub_date, thumbnail_url')
         .eq('is_visible', true)
         .order('pub_date', { ascending: false });
 
@@ -41,7 +52,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
     // Since we only have the ID part of the GUID URL, we search for GUIDs ending with this ID
     const { data, error } = await supabase
         .from('blog_posts')
-        .select('*')
+        .select('guid, title, description, content, categories, pub_date, thumbnail_url')
         .ilike('guid', `%${slug}`)
         .eq('is_visible', true)
         .single();

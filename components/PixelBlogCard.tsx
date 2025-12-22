@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import PixelCard from "./PixelCard";
 import { BlogPost } from "@/lib/blogData";
 import { cn } from "@/lib/utils";
@@ -11,7 +12,7 @@ interface PixelBlogCardProps {
     className?: string; // For grid positioning classes
 }
 
-export default function PixelBlogCard({ post, className }: PixelBlogCardProps) {
+const PixelBlogCard = memo(function PixelBlogCard({ post, className }: PixelBlogCardProps) {
     return (
         <div className={cn("relative group h-full w-full min-h-[250px]", className)}>
             <Link href={`/blog/${post.slug}`} className="block h-full w-full">
@@ -26,11 +27,15 @@ export default function PixelBlogCard({ post, className }: PixelBlogCardProps) {
                                 {post.tags[0]}
                             </div>
                             {post.author.avatar && (
-                                <img
-                                    src={post.author.avatar}
-                                    alt={post.author.name}
-                                    className="w-8 h-8 rounded-full object-cover border border-white/20"
-                                />
+                                <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/20">
+                                    <Image
+                                        src={post.author.avatar}
+                                        alt={post.author.name}
+                                        fill
+                                        className="object-cover"
+                                        sizes="32px"
+                                    />
+                                </div>
                             )}
                         </div>
 
@@ -52,4 +57,6 @@ export default function PixelBlogCard({ post, className }: PixelBlogCardProps) {
             </Link>
         </div>
     );
-}
+});
+
+export default PixelBlogCard;

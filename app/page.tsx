@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { SearchBar } from "@/components/SearchBar"
 
 import { HeadlineSection } from "@/components/HeadlineSection"
@@ -9,6 +9,18 @@ import DynamicBlogGrid from "@/components/DynamicBlogGrid"
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("")
+    const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("")
+
+    // Debounce search query to prevent excessive re-renders
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedSearchQuery(searchQuery)
+        }, 300)
+
+        return () => {
+            clearTimeout(handler)
+        }
+    }, [searchQuery])
 
 
 
@@ -25,7 +37,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <DynamicBlogGrid searchQuery={searchQuery} />
+                <DynamicBlogGrid searchQuery={debouncedSearchQuery} />
             </div>
         </div>
     )

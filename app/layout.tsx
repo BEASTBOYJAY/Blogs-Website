@@ -10,7 +10,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
     title: "BeastBlog",
-    description: "Curated insights on design, technology, and modern living.",
+    description: "Curated insights on design, technology, AI, and modern living.",
 };
 
 export default function RootLayout({
@@ -21,7 +21,30 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
-                {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "Blog",
+                            "name": "BeastBlog",
+                            "url": "https://blogs.jaysinha.dev",
+                            "description": "Curated insights on design, technology, AI, and modern living.",
+                            "author": {
+                                "@type": "Person",
+                                "name": "Jay Sinha",
+                                "alternateName": "Beast Boy Jay",
+                                "url": "https://jaysinha.dev",
+                                "sameAs": [
+                                    "https://jaysinha.dev",
+                                    "https://github.com/beastboyjay",
+                                    "https://x.com/BEAST_BOY_JAY",
+                                    "https://medium.com/@beastboyjay"
+                                ]
+                            }
+                        })
+                    }}
+                />
                 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
             </head>
             <body
@@ -29,13 +52,6 @@ export default function RootLayout({
             >
                 <Providers>
                     <div className="relative flex flex-col min-h-screen">
-                        {/* Header will be part of page content or component if needed, but per requirements "No navbar on main blog listing page", but placeholder DOES have a header. 
-                 However, user requirement says: "No navbar on the main blog listing page". 
-                 But placeholder has a header. 
-                 I will stick to the USER REQUIREMENT "No navbar on the main blog listing page" but maybe include the search bar there?
-                 Actually, looking at "Centered search bar at the top", maybe that's what replaces the navbar.
-                 I will keep layout clean.
-             */}
                         <main className="flex-1">
                             {children}
                         </main>

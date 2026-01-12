@@ -60,7 +60,7 @@ export default function LoginPage() {
                 <div className="text-center">
                     <h2 className="text-3xl font-bold tracking-tight text-white">Admin Login</h2>
                     <p className="mt-2 text-sm text-gray-300">
-                        Sign in to manage beast blog's content
+                        Sign in to manage beast blog&apos;s content
                     </p>
                 </div>
                 <LoginForm />

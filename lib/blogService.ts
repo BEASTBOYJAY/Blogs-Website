@@ -29,7 +29,8 @@ const mapDbPostToBlogPost = (post: DatabasePost): BlogPost => {
         },
         readTime: `${Math.ceil((post.content?.split(' ').length || 0) / 200)} min`, // Estimate read time
         imageUrl: post.thumbnail_url || '',
-        featured: false // Default
+        featured: false, // Default
+        guid: post.guid
     };
 };
 
@@ -48,14 +49,35 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     return (data || []).map(mapDbPostToBlogPost);
 };
 
-export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
-    // Since we only have the ID part of the GUID URL, we search for GUIDs ending with this ID
+export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
     const { data, error } = await supabase
         .from('blog_posts')
+        .select('guid, title, description, content, categories, pub_date, thumbnail_url, is_visible')
+        .order('pub_date', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching all blog posts:', error);
+        return [];
+    }
+
+    return (data || []).map(post => ({
+        ...mapDbPostToBlogPost(post),
+        isVisible: post.is_visible // Add this property to BlogPost interface if needed, or handle locally.
+    }));
+};
+
+export const getBlogPostBySlug = async (slug: string, includeHidden: boolean = false): Promise<BlogPost | null> => {
+    // Since we only have the ID part of the GUID URL, we search for GUIDs ending with this ID
+    let query = supabase
+        .from('blog_posts')
         .select('guid, title, description, content, categories, pub_date, thumbnail_url')
-        .ilike('guid', `%${slug}`)
-        .eq('is_visible', true)
-        .single();
+        .ilike('guid', `%${slug}`);
+
+    if (!includeHidden) {
+        query = query.eq('is_visible', true);
+    }
+
+    const { data, error } = await query.single();
 
     if (error && error.code !== 'PGRST116') { // PGRST116 is "The result contains 0 rows"
         console.error('Error fetching blog post by slug:', error);

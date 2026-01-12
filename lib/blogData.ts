@@ -13,5 +13,7 @@ export interface BlogPost {
     readTime: string;
     imageUrl: string;
     featured?: boolean;
+    isVisible?: boolean;
+    guid?: string;
 
 }

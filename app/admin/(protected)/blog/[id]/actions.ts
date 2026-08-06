@@ -5,7 +5,7 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 
 export async function updateBlog(guid: string, data: { title: string, content: string, isVisible?: boolean }) {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Check auth
     const { data: { user }, error: authError } = await supabase.auth.getUser()

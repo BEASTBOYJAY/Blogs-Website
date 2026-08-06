@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { createClient } from '@/utils/supabase/server'
 
 export async function toggleVisibility(guid: string, currentStatus: boolean) {
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Check if user is authenticated
     const { data: { user }, error: authError } = await supabase.auth.getUser()

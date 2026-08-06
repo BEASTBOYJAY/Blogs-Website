@@ -6,7 +6,7 @@ import Image from "next/image";
 import PixelCard from "./PixelCard";
 import { BlogPost } from "@/lib/blogData";
 import { cn } from "@/lib/utils";
-import parse, { Element } from "html-react-parser";
+import parse, { Element, domToReact } from "html-react-parser";
 
 interface PixelBlogCardProps {
     post: BlogPost;
@@ -48,8 +48,13 @@ const PixelBlogCard = memo(function PixelBlogCard({ post, className }: PixelBlog
                             <div className="text-sm text-gray-300 line-clamp-2">
                                 {parse(post.excerpt, {
                                     replace: (domNode) => {
-                                        if (domNode instanceof Element && (domNode.name === 'img' || domNode.name === 'figure')) {
-                                            return <></>;
+                                        if (domNode instanceof Element) {
+                                            if (domNode.name === 'img' || domNode.name === 'figure') {
+                                                return <></>;
+                                            }
+                                            if (domNode.name === 'a') {
+                                                return <span className="text-primary hover:underline cursor-pointer">{domToReact(domNode.children as any)}</span>;
+                                            }
                                         }
                                     }
                                 })}
